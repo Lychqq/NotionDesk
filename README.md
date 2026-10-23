@@ -1,154 +1,140 @@
-# 📓 NotionDesk
+<div align="right">
+  <a href="README.md"><img src="https://img.shields.io/badge/Language-English-blue?style=flat-square" alt="English"></a>
+  <a href="README.ru.md"><img src="https://img.shields.io/badge/Язык-Русский-gray?style=flat-square" alt="Русский"></a>
+</div>
+
+# NotionDesk
 
 <div align="center">
 
-![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?style=for-the-badge&logo=windows)
-![.NET 9](https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=for-the-badge&logo=dotnet)
-![Lightweight Size](https://img.shields.io/badge/FDD%20Build-~700%20KB-22C55E?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?style=flat-square&logo=windows)
+![.NET 9](https://img.shields.io/badge/.NET-9.0%20WPF-512BD4?style=flat-square&logo=dotnet)
+![RAM Footprint](https://img.shields.io/badge/RAM-~25--40%20MB-22C55E?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-F59E0B?style=flat-square)
 
-**Минималистичный виджет рабочего стола в строгом стиле Notion Dark Mode.**  
-*Native desktop notes widget with Notion Dark Mode aesthetics, live file sync & 1-click code copying.*
+**Lightweight native desktop Markdown viewer with real-time file synchronization and CLI command extraction.**
 
-> [!NOTE]
-> Доступны два варианта поставки:
-> 1. **Framework-Dependent (FDD) — ~700 КБ**: ультралегкий бинарник (требуется установленный [.NET Desktop Runtime 9.0](https://dotnet.microsoft.com/download/dotnet/9.0)).
-> 2. **Self-Contained (Standalone) — ~65 МБ (zip)**: полностью автономная сборка с встроенным рантаймом, работает из коробки на любой «чистой» Windows 10/11.
-
-[✨ Возможности](#-возможности) • [🚀 Быстрый старт](#-быстрый-старт) • [📦 Установка](#-установка) • [⌨️ Управление](#️-управление) • [🛠 Сборка](#-сборка)
+[Features](#features) • [Installation](#installation) • [Controls](#controls) • [Build from Source](#build-from-source) • [Roadmap](ROADMAP.md)
 
 </div>
 
 ---
 
-## 🌟 Почему NotionDesk?
+## Overview
 
-Большинство приложений для заметок на рабочем столе (Sticky Notes, Rainmeter-скины, Electron-заметки) либо страдают от огромного потребления памяти (200-500 МБ RAM на Chromium), либо имеют проблемы с кириллицей, либо не умеют на лету отображать Markdown и терминальные команды.
+Most desktop note-taking and viewer tools rely on heavy web engines (Chromium/Electron), consuming 200–500 MB of RAM while idling on the desktop.
 
-**NotionDesk** решает эти проблемы раз и навсегда:
-- **0% фонового CPU** и потребление памяти в пределах **~25-45 МБ**.
-- **Настоящий нативный .exe** на C# / .NET 9 без веб-движков и тяжелых зависимостей.
-- **Строгий монохромный дизайн Notion Dark** (`#191919`) с полупрозрачными границами и мягкими тенями.
-
----
-
-## ✨ Возможности
-
-- ⚡ **Drag & Drop на всю площадь окна**: просто перетащите любой `.md` или `.txt` файл мышью в любое место окна виджета.
-- 🔄 **Realtime File Watcher**: мгновенное обновление текста на экране при любом сохранении файла в стороннем редакторе (VS Code, Obsidian, Блокнот).
-- 📋 **Умный 1-Click Code Copy**:
-  - Автоматическое распознавание блоков команд (`PowerShell`, `CLI`, многострочные скрипты).
-  - Кнопка **«Скопировать»** для мгновенной вставки в терминал.
-  - Поддержка выделения любого фрагмента текста мышью.
-- 🔗 **Кликабельные ссылки**: автоопределение веб-ссылок (`http://`, `https://`) и ссылок Markdown с открытием в браузере по умолчанию.
-- 📥 **Системный трей Windows (стрелочка у часов)**:
-  - Иконка в нижнем правом углу экрана.
-  - Контекстное меню по правому клику:
-    - ➕ **Новая заметка** (поддержка мульти-окон).
-    - 📁 **Выбрать файл...**
-    - 👁 **Показать / Скрыть все заметки**.
-    - 🌐 **Смена языка интерфейса** (Русский / English).
-    - ⚙ **Автозагрузка с Windows** (включение/отключение в один клик).
-    - ✕ **Выход**.
-- 🗂 **Мульти-заметки**: создавайте сколько угодно независимых окон заметок на рабочем столе — каждое окно сохраняет свои координаты и размер.
-- 📌 **Always-on-Top**: закрепление поверх всех окон одной кнопкой `📌`.
-- 🔠 **Clean / Mono шрифт**: переключение между гарнитурой Segoe UI и моноширинным Cascadia Code / Consolas кнопкой `Aa`.
-- 🌐 **Билингвальность (RU / EN)**: мгновенное переключение языка всех кнопок и меню.
+**NotionDesk** is built as a native C#/.NET 9 Windows application:
+- **Low resource usage**: idle memory footprint around 25–40 MB and 0% background CPU.
+- **Native performance**: fast WPF renderer with hardware acceleration and automatic memory management.
+- **Pure offline architecture**: no web views, telemetry, or remote services.
 
 ---
 
-## 🚀 Быстрый старт
+## Features
 
-### Вариант 1: Запуск без установки (Portable)
-1. Скачайте архив **`NotionDesk-v1.0.0-win-x64.zip`** из [Releases](https://github.com/Lychqq/NotionDesk/releases).
-2. Распакуйте в любую удобную папку.
-3. Запустите `NotionDesk.exe`.
-
-### Вариант 2: 1-Click Установка с ярлыками
-1. Запустите `Install.bat` из архива.
-2. Программа автоматически установится в `%LOCALAPPDATA%\Programs\NotionDesk` и создаст ярлыки на Рабочем столе и в меню Пуск.
-3. Для удаления просто запустите `Uninstall.bat`.
+- **Full-window Drag & Drop**: Drop any `.md` or `.txt` file anywhere onto the window to display it instantly.
+- **Live File Watcher**: Automatically re-renders content when the source file is modified in any external editor (VS Code, Obsidian, Notepad).
+- **CLI Code Copying**: Detects PowerShell, Bash, and terminal code blocks with a dedicated 1-click copy action for terminal use.
+- **Link Navigation**: Automatically parses web links (`http://`, `https://`) and Markdown references, opening them in the default browser.
+- **Windows System Tray**:
+  - Background tray icon with contextual controls.
+  - Multi-window note spawning.
+  - Show / hide all notes shortcut.
+  - Interface language switching (English / Russian).
+  - Windows startup toggle (registry Run key).
+- **Multi-Notes Management**: Independent note windows with persistent desktop coordinates and sizes.
+- **Always-on-Top Toggle**: Pin the note above other windows when executing workflows.
+- **Typography Switching**: Switch between proportional and monospace (Cascadia Code / Consolas) typefaces.
 
 ---
 
-## ⌨️ Управление
+## Installation & Distribution
 
-| Элемент | Действие |
+Two release builds are available:
+
+1. **Framework-Dependent (~700 KB)**: Ultra-compact binary. Requires [.NET Desktop Runtime 9.0](https://dotnet.microsoft.com/download/dotnet/9.0) installed on the system.
+2. **Self-Contained (~65 MB zip)**: Fully standalone archive with embedded .NET 9 runtime. Runs immediately on any clean Windows 10/11 system without dependencies.
+
+Download the latest package from [Releases](https://github.com/Lychqq/NotionDesk/releases).
+
+### Quick Setup
+
+- **Portable**: Extract the archive and launch `NotionDesk.exe`.
+- **Install Script**: Run `Install.bat` to deploy to `%LOCALAPPDATA%\Programs\NotionDesk` with Start Menu and Desktop shortcuts.
+- **Uninstall**: Run `Uninstall.bat` for complete removal.
+
+---
+
+## Controls
+
+| Element / Shortcut | Action |
 | :--- | :--- |
-| **Перетаскивание файла** | Перетащите `.md` или `.txt` на окно для немедленного переключения заметки |
-| **Шапка окна** | Зажмите левую кнопку мыши для свободного перемещения по экрану |
-| **Уголок внизу справа** | Плавное изменение размера окна (`ResizeGrip`) |
-| `+` | Открыть ещё одно окно заметки |
-| `📁` | Выбрать файл через стандартный диалог Windows |
-| `📝` | Открыть текущий файл во внешнем редакторе (Блокнот) |
-| `📌` | Закрепить поверх окон (зеленый = включено) |
-| `RU / EN` | Переключить язык интерфейса |
-| `Aa` | Переключить шрифт (Segoe UI / Cascadia Code) |
-| `✕` | Закрыть текущую заметку |
-| **Иконка в трее** | Двойной клик — скрыть/показать все заметки. Правый клик — меню управления |
+| **File Drag & Drop** | Drop `.md` / `.txt` file anywhere on window |
+| **Header Bar** | Hold left mouse button to reposition window |
+| **Resize Grip** | Bottom-right corner drag to resize |
+| `+` | Open another note window |
+| `📁` / File dialog | Select a file via standard Windows Explorer dialog |
+| `📝` / Edit | Open active file in system default editor |
+| `📌` / Pin | Toggle Always-on-Top |
+| `RU / EN` | Switch UI language |
+| `Aa` | Switch between proportional and monospace font |
+| `✕` | Close note window |
+| **Tray Icon** | Double-click to toggle visibility; right-click for full menu |
 
 ---
 
-## 🛠 Сборка из исходников
+## Build from Source
 
-Требования:
+### Prerequisites
+
 - Windows 10 / 11 (x64)
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 
 ```powershell
-# Клонирование репозитория
+# Clone repository
 git clone https://github.com/Lychqq/NotionDesk.git
 cd NotionDesk\DesktopNotes
 
-# 1. Запуск в режиме разработки
+# Run in development mode
 dotnet run
 
-# 2. Сборка ультралегкого бинарника (~700 КБ, Framework-Dependent)
-# Требует наличия установленного .NET 9 Desktop Runtime на целевом ПК
+# Build Framework-Dependent binary (~700 KB)
 dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o "../publish"
 
-# 3. Сборка полностью автономного бинарника (Self-Contained)
-# Включает весь рантайм .NET 9 внутри файла, работает на любой «чистой» Windows 10/11
+# Build Self-Contained standalone package
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o "../publish_standalone"
 ```
 
 ---
 
-## 🗺 Дорожная карта (Roadmap)
-
-Подробный план развития и майлстоуны проекта описаны в отдельном документе:  
-👉 **[ROADMAP.md](ROADMAP.md)**
-
-Вы также можете отслеживать статус задач и предлагать свои идеи в **[GitHub Issues](https://github.com/Lychqq/NotionDesk/issues)** и **[GitHub Projects](https://github.com/Lychqq/NotionDesk/projects)**.
-
-- 🎯 **v1.1.0:** Zero-Lag выделение текста при скролле и нативные цветные эмодзи.
-- 🎯 **v1.2.0:** Отрисовка картинок в Markdown и динамический зум шрифта (`Ctrl + Колесо`).
-- 🎯 **v2.0.0:** Модульные мини-виджеты (Pomodoro, календарь, калькулятор, интерактивные чекбоксы).
-
----
-
-## 📂 Структура проекта
+## Project Structure
 
 ```text
 DesktopNotesWidget/
 ├── DesktopNotes/
-│   ├── App.xaml / App.xaml.cs          # Инициализация приложения, трея и перехват ошибок
-│   ├── MainWindow.xaml / .cs           # UI карточки, Drag&Drop, рендеринг Markdig/CLI
-│   ├── TrayService.cs                  # Системный трей Windows, иконка и темное меню
-│   ├── NoteManager.cs                  # Управление мульти-окнами и автосохранение
-│   ├── LocalizationManager.cs          # Двуязычная локализация (RU / EN)
-│   ├── AppConfig.cs                    # Настройки config.json и автозагрузка (Run Key)
-│   └── DesktopNotes.csproj             # Конфигурация проекта .NET 9 WPF
-├── publish/                            # Готовый скомпилированный релиз
-│   ├── NotionDesk.exe                  # Standalone исполняемый файл
-│   ├── Install.bat / Install-*.ps1     # 1-Click скрипт установки
-│   └── Uninstall.bat / Uninstall-*.ps1 # Скрипт чистого удаления
-└── README.md
+│   ├── App.xaml / App.xaml.cs          # Application lifecycle, tray setup, exception handlers
+│   ├── MainWindow.xaml / .cs           # Window layout, drag-and-drop, Markdown/CLI rendering
+│   ├── TrayService.cs                  # Windows tray integration and menu management
+│   ├── NoteManager.cs                  # Multi-instance window state and persistence
+│   ├── LocalizationManager.cs          # Bilingual strings (EN / RU)
+│   ├── AppConfig.cs                    # Configuration schema and autostart registration
+│   └── DesktopNotes.csproj             # .NET 9 WPF project definition
+├── publish/                            # Compiled releases and packaging scripts
+├── README.md                           # Documentation (English)
+├── README.ru.md                        # Documentation (Russian)
+└── ROADMAP.md                          # Technical milestones and planning
 ```
 
 ---
 
-## 📄 Лицензия
+## Roadmap
 
-Распространяется под свободной лицензией **MIT License**.  
-Автор: **Николай Львов ([@Lychqq](https://github.com/Lychqq))**, 2026.
+Planned improvements, architecture milestones, and backlog items are maintained in [ROADMAP.md](ROADMAP.md).
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).  
+Author: [Nikolay Lvov (@Lychqq)](https://github.com/Lychqq).

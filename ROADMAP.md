@@ -1,51 +1,52 @@
-# 🗺 NotionDesk — Roadmap & Milestones
+# NotionDesk — Roadmap & Milestones
 
-Этот документ описывает вектор развития проекта **NotionDesk**, запланированные майлстоуны и технические задачи.
-
----
-
-## 🎯 v1.1.0 — Performance & Visual Polish
-
-*Фокус: идеальная плавность и нативное отображение современных символов.*
-
-- [ ] **⚡ Zero-Lag Text Selection (Virtualization):**
-  - Переработка рендерера для устранения джиттера при скролле с зажатым выделением мыши.
-  - Ограничение пересчёта геометрии мыши (`HitTest`) только текущими видимыми строками на экране.
-  - Сохранение сверхнизкого потребления RAM (~20–25 МБ).
-- [ ] **🎨 Нативные полноцветные эмодзи (Color Emoji):**
-  - Подключение цветных векторных таблиц OpenType COLR/CPAL шрифта `Segoe UI Emoji`.
-  - Устранение монохромной заливки цветом текста `Foreground`.
-  - Корректная поддержка вариативных селекторов (VS-16 `\uFE0F`) и ZWJ-последовательностей.
+This document outlines technical milestones, architecture goals, and planned feature development for **NotionDesk**.
 
 ---
 
-## 🎯 v1.2.0 — Rich Media & Typography
+## Milestone 1: Performance & Input Stability (v1.1.0)
 
-*Фокус: расширенные возможности форматирования и кастомизация.*
+Focus: Selection responsiveness and font rendering correctness.
 
-- [ ] **🖼 Отрисовка изображений (Markdown Images):**
-  - Поддержка синтаксиса `![Описание](путь_или_url)`.
-  - Загрузка локальных картинок относительно папки заметки.
-  - Асинхронное кэширование веб-изображений без подтормаживания скролла.
-  - Клик по картинке для зума во всплывающем окне.
-- [ ] **🔠 Динамический масштаб и размер шрифта:**
-  - Изменение масштаба текста через `Ctrl + Колесо мыши`.
-  - Кнопки `A+` / `A-` в настройках или контекстном меню.
-  - Сохранение выбранного масштаба для каждого окна индивидуально в `config.json`.
-
----
-
-## 🎯 v2.0.0 — Modular Desktop Widgets
-
-*Фокус: превращение заметки в модульный хаб продуктивности на рабочем столе.*
-
-- [ ] **🧩 Встраиваемые мини-виджеты (Widgets Inside Widget):**
-  - **⏱ Pomodoro Timer:** компактный таймер 25/5 мин в шапке окна со звуковым или системным уведомлением в трей.
-  - **📅 Mini Calendar:** раскладка месяца с подсветкой дат и быстрым переходом к заметкам на день.
-  - **🔢 Быстрый калькулятор / Scratchpad:** вычисление математических выражений прямо в тексте (как в Soulver / Raycast).
-  - **✅ Interactive Checkboxes:** кликабельные чекбоксы `- [ ]` / `- [x]`, которые меняют статус прямо в файле на диске без открытия стороннего редактора.
+- [ ] **Virtualization & Zero-Lag Text Selection**:
+  - Refactor renderer to avoid selection geometry re-calculations during rapid drag-selection.
+  - Restrict `HitTest` and line measurement to visible viewport elements only.
+  - Maintain low RAM usage ceiling (~20–30 MB) under heavy continuous selection.
+- [ ] **DirectWrite OpenType Color Emoji Support**:
+  - Enable native color glyph tables (COLR/CPAL) for `Segoe UI Emoji`.
+  - Fix monochrome rendering caused by parent text `Foreground` overriding color emoji glyphs.
+  - Full support for variant selectors (VS-16 `\uFE0F`) and Zero-Width Joiner (ZWJ) sequences.
 
 ---
 
-## 💡 Предложить идею или сообщить о баге
-Если у вас есть предложение или вы нашли ошибку, создайте [Issue на GitHub](https://github.com/Lychqq/NotionDesk/issues).
+## Milestone 2: Rich Media & Dynamic Typography (v1.2.0)
+
+Focus: Markdown media rendering and interactive font sizing.
+
+- [ ] **Markdown Inline and Block Images**:
+  - Support `![Alt](path_or_url)` syntax.
+  - Resolve local paths relative to the markdown file folder.
+  - Non-blocking asynchronous caching and decoding of remote image URLs.
+  - Image preview popup on click.
+- [ ] **Dynamic Font Scale & Zoom**:
+  - Interactive text scaling via `Ctrl + Mouse Wheel`.
+  - Dedicated scaling controls in settings/context menu.
+  - Persistent zoom levels per note in `config.json`.
+
+---
+
+## Milestone 3: Modular Desktop Widgets (v2.0.0)
+
+Focus: Expand standalone notes into a modular desktop productivity surface.
+
+- [ ] **Embedded Mini-Widgets**:
+  - **Pomodoro Timer**: Compact work/break countdown in header with system notifications.
+  - **Mini Calendar**: Monthly view with date navigation and daily notes integration.
+  - **Inline Math / Scratchpad**: Real-time expression evaluation directly inside note blocks.
+  - **Interactive Checkboxes**: Clickable `- [ ]` and `- [x]` markdown tasks with direct disk file state updates.
+
+---
+
+## Feedback & Feature Requests
+
+Submit issues and feature requests through [GitHub Issues](https://github.com/Lychqq/NotionDesk/issues).
