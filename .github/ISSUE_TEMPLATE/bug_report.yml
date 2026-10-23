@@ -1,0 +1,23 @@
+name: 🐛 Bug Report
+description: Сообщить об ошибке или сбое в работе NotionDesk
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо, что помогаете делать NotionDesk лучше!
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание проблемы
+      description: Что произошло и что вы ожидали увидеть?
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Версия Windows
+      placeholder: Windows 11 Pro 23H2 (x64)
+    validations:
+      required: true

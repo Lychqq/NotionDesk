@@ -1,0 +1,21 @@
+## .NET Core / C#
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+*.DotSettings.user
+
+## Publish and release outputs
+publish/
+publish_standalone/
+installer_output/
+*.zip
+*.pdb
+*.log
+
+# Keep publish folder zip or release scripts if needed, but ignore temp build outputs

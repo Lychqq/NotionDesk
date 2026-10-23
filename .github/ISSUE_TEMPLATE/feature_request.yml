@@ -1,0 +1,17 @@
+name: 💡 Feature Request / Roadmap Item
+description: Предложить новую функцию или улучшение для NotionDesk
+title: "[FEATURE]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какую задачу или боль решает эта фича?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Описание желаемого решения
+    validations:
+      required: true
